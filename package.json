@@ -1,0 +1,26 @@
+{
+  "name": "word-game",
+  "version": "1.0.0",
+  "description": "A desktop word game: with Anagram, Word Hunt and Word Bite.",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "electron .",
+    "dev": "concurrently \"npm run watch\" \"npm start\"",
+    "watch": "chokidar './*.{html,js,css}' -c 'npm run build'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Richard Akwuzie",
+  "license": "ISC",
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.0.1",
+    "electron": "^32.1.2",
+    "prettier": "^3.3.3"
+  },
+  "dependencies": {
+    "random-words": "^2.0.1",
+    "word-list": "^4.0.0"
+  }
+}

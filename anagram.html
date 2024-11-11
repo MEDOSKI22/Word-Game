@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>ANAGRAM</title>
+              <link rel="stylesheet" href="./src/anagramS.css">
+</head>
+<body>
+  <div class="loadingScreen">
+    <form type="action"></form>
+    <label for="Name">Please enter your name:</label><br>
+    <input type="text" id="Name" name="Name"><br><br>
+    <input type="submit" value="Submit">
+  </div>
+  <div class="startGame">
+  <div class="upper-grid">
+    <div id="timer"><p>Time: 60s</p></div>
+    <div class="Stat-grid">
+      <div>
+        <h2 id="name">NAME:</h2>
+      </div>
+      <div>
+        <h2 id="words">WORDS: 0</h2>
+      </div>
+      <div>
+        <h2 id="score">SCORE: 0</h2>
+      </div>
+    </div>     
+    <div class="blank"></div>   
+  </div>  
+              <div class="main">
+                      
+                            <div class="selected">
+                            </div>
+                            <div class="tile-holder">
+                                          <div class="tile">
+                                           <p class="letter"></p>
+                                          </div>
+                                          <div class="tile">
+                                            <p class="letter"></p>
+                                          </div>
+                                          <div class="tile">
+                                           <p class="letter"></p>
+                                          </div>
+                                          <div class="tile">
+                                           <p class="letter"></p>
+                                          </div>
+                                          <div class="tile">
+                                           <p class="letter"></p>
+                                          </div>
+                                          <div class="tile">
+                                           <p class="letter"></p>
+                                          </div>
+                                          <div class="tile">
+                                           <p class="letter"></p>
+                                          </div>
+                            </div>
+                            <div class="btn">
+                              <button class="clear">Clear</button>
+                              <button class="enter">Enter</button>
+                            </div>
+
+                            <div class="meaning-div">
+                              <div></div>
+                              <div>
+                               <h4 class="meaning"></h4>
+                              </div>
+                              <div></div>
+                            </div>
+              </div>
+  </div>
+
+              <script src="anagram.js"></script>
+</body>
+</html>

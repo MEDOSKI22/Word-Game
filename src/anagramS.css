@@ -1,0 +1,128 @@
+*{
+              text-align: center;
+              box-sizing: border-box;
+             
+}
+
+body{
+              background-image: url(../img/anagram_bg.jpg);
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+}
+
+.loadingScreen{
+              box-sizing: border-box;
+              position: fixed;
+              top: 0;
+              left: 0;
+              height: 100vh;
+              width: 100vw;
+              display: none;
+              background-image: url(../img/wallpaperflare.com_wallpaper\ \(12\).jpg);
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+              color: black;
+              z-index: 9999;
+              margin: 0px;
+              padding: 0px;
+}
+
+.startGame{
+              /*display: none;*/
+}
+
+.Stat-grid{
+              display: grid;
+              grid-column: 1fr 1fr 1fr;
+              font-size: small;
+              margin-bottom: 2px;
+}
+
+.main{
+              max-width: 50%;
+              margin: 0 auto;
+}
+
+.upper-grid{
+              display: grid;
+              grid-template-columns: 1fr 1fr 1fr;
+}
+
+#timer{
+              font-weight: 600;
+              font-size: medium;
+              display: flex;
+              justify-content: end;
+              align-items: end;
+}
+
+.tile-holder{
+         display: flex;
+         justify-content: center;
+         flex-wrap: wrap;
+         margin-bottom: 20px;
+}
+
+.tile {
+              width: 50px;
+              height: 50px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin: 10px;
+              font-size: 24px;
+              background-color: rgb(235, 222, 166);
+              box-shadow: -0.2em -0.125em 0.125em rgba(0, 0, 0, 0.25),
+              0 0 0 0.04em rgba(233, 184, 101, 0.3),
+              0.02em 0.02em 0.02em rgba(0, 0, 0, 0.4) inset,
+              -0.05em -0.05em 0.02em rgba(255, 255, 255, 0.8) inset;
+              border: 2px solid #ccc;
+              border-radius: 3px;
+              cursor: pointer;
+}
+
+p{
+              display: flex;
+              justify-content: center;
+}
+
+.btn{
+              display: flex;
+              justify-content: center;
+              gap: 2px;
+}
+
+
+button{
+              width: 100px;
+              height: 40px;
+              font-size: 18px;
+              padding: 10px 20px;
+              cursor: pointer;
+              
+}
+
+.selected{
+              background-color: white;
+              font-size: 24px;
+              padding: 10px;
+              min-height: 40px;
+              border: 2px solid #ccc;
+              margin-bottom: 20px;
+              border-radius: 5px;
+}
+
+
+.meaning-div{
+              display: grid;
+              grid-template-columns: 1fr 1fr 1fr;
+}
+
+.meaning{
+              justify-content: center;
+              color: gray;
+}
+
+
