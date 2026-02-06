@@ -12,8 +12,8 @@ let letterUsed = false;
 
 startGame();
 
+//Function to fetch the word
 async function fetchWord(){
-
     try {
                   const response = await fetch('https://random-word-api.herokuapp.com/word?number=1');
                   const data = await response.json();
@@ -21,11 +21,12 @@ async function fetchWord(){
                   console.log("Fetched word:", word);
                   return word;
     } catch (error) {
-                  console.error("Error fetching word:", error);
+                  console.error("Error fetching word", error);
                   return null;
     } 
 };
 
+//Function to start game
 async function startGame() {
     let loadingScreen  = document.querySelector(".loadingScreen");
     loadingScreen.style.display = 'block';
@@ -34,9 +35,16 @@ async function startGame() {
 
     if (!word) {
         console.error("No word fetched, game cannot start.");
-        loadingScreen.textContent = "No internet connection";
+        loadingScreen.textContent = "NO INTERNET CONNECTION";
         return 1; // Exit if no word is fetched
     }
+    
+    // code for program shouldn't start still name is inputed
+
+    // If(){
+
+    // }
+
     loadingScreen.style.display = 'none';
     console.log(word);
     word = word.toUpperCase();
@@ -236,6 +244,9 @@ function startTimer() {
 
 function endGame(){
     //come back to code here
+    alert(`Time's up! Your final score is ${score} with ${wordsCount} words found.`);
+    let stop = 1;
+    return
     stop;
 }
     

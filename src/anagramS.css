@@ -27,6 +27,8 @@ body{
               z-index: 9999;
               margin: 0px;
               padding: 0px;
+              color: white;
+              font-size: xx-large;
 }
 
 .startGame{
