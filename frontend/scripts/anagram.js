@@ -1,19 +1,20 @@
+
+
 let score = 0;
 let wordsCount = 0;
 let userUsedWords = [];
+let playerName;
 
 let tiles= document.querySelectorAll(".tile");
 let selectedLetter = "";
 let maxLetters=7;
 const selected = document.querySelector(".selected");
 let usedIndex = [];
-let letterUsed = false;   
-      
+let letterUsed = false;
+const API_HOST = "https://localhost:4000"
 
-startGame();
-
-//Function to fetch the word
 async function fetchWord(){
+
     try {
                   const response = await fetch('https://random-word-api.herokuapp.com/word?number=1');
                   const data = await response.json();
@@ -21,30 +22,24 @@ async function fetchWord(){
                   console.log("Fetched word:", word);
                   return word;
     } catch (error) {
-                  console.error("Error fetching word", error);
+                  console.error("Error fetching word:", error);
                   return null;
     } 
 };
 
-//Function to start game
 async function startGame() {
-    let loadingScreen  = document.querySelector(".loadingScreen");
-    loadingScreen.style.display = 'block';
-    fetchWord();
+  const loadingScreen  = document.querySelector(".loadingScreen");
+  const username = document.querySelector("#name")
+  loadingScreen.style.display = 'block';   
     let word = await fetchWord();
 
     if (!word) {
         console.error("No word fetched, game cannot start.");
-        loadingScreen.textContent = "NO INTERNET CONNECTION";
-        return 1; // Exit if no word is fetched
+        loadingScreen.textContent = "No internet connection";
+        return 1; 
     }
-    
-    // code for program shouldn't start still name is inputed
-
-    // If(){
-
-    // }
-
+ 
+   
     loadingScreen.style.display = 'none';
     console.log(word);
     word = word.toUpperCase();
@@ -69,6 +64,7 @@ async function startGame() {
         startTimer();
         allEvents();
         console.log(output); 
+        
   }
         
 
@@ -91,8 +87,8 @@ function allEvents(){
     keyPressedEvents();
 
     async function submitGuess() {
-        if(selectedLetter.length <= 2 || userUsedWords.includes(selectedLetter)){
-            console.error("Unsupported Word length");
+        if(selectedLetter.length <= 2 ){
+            alert("Unsupported Word length");
             let popIndex = selectedLetter.length;
             selectedLetter = "";
             selected.textContent = selectedLetter;
@@ -100,7 +96,17 @@ function allEvents(){
                 tiles[usedIndex.pop()].style.visibility = "visible";
                 letterUsed = false;
             }
-            return 11; //return with unsupported word length
+            return 11; 
+        }else if (userUsedWords.includes(selectedLetter.toLowerCase())){
+            alert("You've used this word before");
+            let popIndex = selectedLetter.length;
+            selectedLetter = "";
+            selected.textContent = selectedLetter;
+            for(let i = 0; i < popIndex; i++){
+                tiles[usedIndex.pop()].style.visibility = "visible";
+                letterUsed = false;
+            }
+            return 11; 
         }
 
         try{
@@ -109,6 +115,7 @@ function allEvents(){
             let enteredWord = await fetch (`https://api.dictionaryapi.dev/api/v2/entries/en/${selectedLetter}`);
             let defFile = await enteredWord.json();
             let definition = defFile[0].meanings[0].definitions[0].definition;
+            userUsedWords.push(selectedLetter);
             userStatUpdate(selectedLetter);
             selectedLetter = selectedLetter.charAt(0).toUpperCase() + selectedLetter.slice(1).toLowerCase();
             meaningTab.textContent = selectedLetter + ": " + definition;
@@ -242,12 +249,49 @@ function startTimer() {
     }, 1000);
 }
 
-function endGame(){
-    //come back to code here
-    alert(`Time's up! Your final score is ${score} with ${wordsCount} words found.`);
-    let stop = 1;
-    return
-    stop;
+
+
+const updateLeaderboard = async () => {
+    try {
+        const res = await fetch(`${API_HOST}/api/scores`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(
+            {score: score, playerName: playerName}
+        ),
+      }
+    );
+    const data = await res.json();
+    console.log(data)
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+const fetchLeaderboard = async() =>{
+    try {
+        const res = await fetch("http://localhost:4000/api/scores");
+        const data = await res.json();
+        console.log("Leaderboard:", data.data);
+        return data.data;
+    } catch (error) {
+        console.error("Failed to fetch leaderboard:", error);
+        return [];
+    }
+}
+
+const endGame= async()=>{
+    tiles.forEach(tile => {
+        tile.style.pointerEvents = 'none';
+        tile.style.opacity = '0.5';
+    });
+    
+    // Update and fetch leaderboard
+    let updateLeaders = await updateLeaderboard();
+    const leaderboard = await fetchLeaderboard();
+    
+    alert(`Game Over!\nFinal Score: ${score}\nWords Found: ${wordsCount}`);
+    window.location.href = 'leaderboard.html';
 }
     
 function userStatUpdate(word){
@@ -283,3 +327,20 @@ function clearSelectedArea(){
             }
 }
         
+
+const form = document.querySelector('#userInput')
+const loader = document.querySelector('.loader')
+form.addEventListener("submit", (e)=>{
+    e.preventDefault()
+    const username = e.target.username.value;
+    if (!username.trim()) {
+        alert("Please enter a valid name");
+        return;
+    }
+    playerName = username;
+    document.querySelector("#name").textContent = `NAME: ${username}`;
+    document.querySelector(".loadingScreen").style.display = 'none';
+    form.style.display = "none";
+    loader.style.display = "grid"
+    startGame();
+})

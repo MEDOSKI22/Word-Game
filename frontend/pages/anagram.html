@@ -4,14 +4,19 @@
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <title>ANAGRAM</title>
-              <link rel="stylesheet" href="./src/anagramS.css">
+              <link rel="stylesheet" href="../assets/styles/anagramS.css">
 </head>
 <body>
   <div class="loadingScreen">
-    <form type="action"></form>
-    <label for="Name">Please enter your name:</label><br>
-    <input type="text" id="Name" name="Name"><br><br>
-    <input type="submit" value="Submit">
+    <form id="userInput" class="user-form">
+      <label for="Name">Please enter your name:</label><br>
+      <input type="text" name="username"><br><br>
+      <input type="submit" value="Submit">
+    </form>
+    <div class="loaderCenter">
+      <div class="loader"></div>
+    </div>
+    
   </div>
   <div class="startGame">
   <div class="upper-grid">
@@ -71,6 +76,6 @@
               </div>
   </div>
 
-              <script src="anagram.js"></script>
+              <script src="../scripts/anagram.js"></script>
 </body>
 </html>

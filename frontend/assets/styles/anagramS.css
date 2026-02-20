@@ -5,7 +5,7 @@
 }
 
 body{
-              background-image: url(../img/anagram_bg.jpg);
+              background-image: url(../images/anagram_bg.jpg);
               background-size: cover;
               background-repeat: no-repeat;
               background-attachment: fixed;
@@ -18,8 +18,8 @@ body{
               left: 0;
               height: 100vh;
               width: 100vw;
-              display: none;
-              background-image: url(../img/wallpaperflare.com_wallpaper\ \(12\).jpg);
+              display: block;
+              background-image: url(../images/wallpaperflare.com_wallpaper\ \(12\).jpg);
               background-size: cover;
               background-repeat: no-repeat;
               background-attachment: fixed;
@@ -29,11 +29,73 @@ body{
               padding: 0px;
               color: white;
               font-size: xx-large;
+              display: flex;
+              justify-content: center;
+              align-items: center;
 }
 
-.startGame{
-              /*display: none;*/
+.user-form {
+    position: fixed;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px 50px;
+  border-radius: 16px;
+  width: 340px;
+  height: 400px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3px;
+
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.25),
+    0 0 30px rgba(76, 175, 80, 0.4);
 }
+
+.user-form label {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.user-form input[type="text"] {
+  padding: 14px;
+  border-radius: 10px;
+  border: 2px solid #a5d6a7;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.user-form input[type="text"]:focus {
+  border-color: #2e7d32;
+  outline: none;
+  box-shadow: 0 0 10px rgba(46, 125, 50, 0.5);
+}
+
+.user-form button {
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+
+  background: linear-gradient(145deg, #4caf50, #2e7d32);
+  transition: 0.3s ease;
+}
+
+.user-form button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.user-form button:active {
+  transform: translateY(0);
+}
+
+
 
 .Stat-grid{
               display: grid;
@@ -127,4 +189,34 @@ button{
               color: gray;
 }
 
+.loaderCenter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
 
+
+.loader {
+  width: 90px;
+  height: 14px;
+  box-shadow: 0 3px 0 #fff;
+  background: linear-gradient(#fff 0 0) 50%/2px 100% no-repeat;
+  display: none;
+}
+.loader:before,
+.loader:after{
+  content: "";
+  grid-area: 1/1;
+  background: radial-gradient(circle closest-side, var(--c,#fff) 92%,#0000 ) 0 0/calc(100%/4) 100%;
+  clip-path: inset(0 50% 0 0);
+  animation: l3 1s infinite linear;
+}
+.loader:after{
+  --c:  rgb(235, 222, 166); 
+  clip-path: inset(0 0 0 50%);
+}
+@keyframes l3 {
+    100% {background-position: calc(100%/3) 0}
+}

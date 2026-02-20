@@ -1,5 +1,5 @@
 *{
-              background-image: url(../img/bg.jpg);
+              background-image: url(../images/bg.jpg);
               background-size: cover;
               background-repeat: no-repeat;
               color: white;
@@ -54,6 +54,11 @@ a:hover{
          }
 
 .version{
+     position: fixed;
      display: flex;
      justify-content: end;
+     height: 100vh;
+     cursor: pointer;
+     bottom:0;
+     align-items: end;
 }
